@@ -6,6 +6,7 @@ import Login from "../pages/Auth/Login/Login";
 import AuthLayout from "../layouts/AuthLayout/AuthLayout";
 import Register from "../pages/Auth/Register/Register";
 import ErrorPage from "../ErrorPages/ErrorPage";
+import Profile from "../pages/Profile/Profile";
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
       {
         path: "register",
         Component: Register,
+      },
+      {
+        path: "profile",
+        Component: Profile,
       },
     ],
   },

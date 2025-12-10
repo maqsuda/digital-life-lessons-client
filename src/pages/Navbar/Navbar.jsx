@@ -80,7 +80,7 @@ const Navbar = () => {
                     <li className="">
                       <NavLink
                         to="/profile"
-                        className="w-[120px] hover:font-bold hover:text-[#CE2600] hover:bg-[#FFCD00]"
+                        className="w-[120px] hover:font-bold hover:text-white hover:bg-[#035372]"
                       >
                         Profile
                       </NavLink>
@@ -89,7 +89,7 @@ const Navbar = () => {
                     <li>
                       <NavLink
                         to="/dashboard"
-                        className="w-[120px] hover:font-bold hover:text-[#CE2600] hover:bg-[#FFCD00] "
+                        className="w-[120px] hover:font-bold hover:text-white hover:bg-[#035372] "
                       >
                         Dashboard
                       </NavLink>
@@ -98,7 +98,7 @@ const Navbar = () => {
                     <li>
                       <button
                         onClick={handleLogout}
-                        className="px-3 border-none text-start items-start hover:font-bold hover:text-[#CE2600] hover:bg-[#FFCD00] "
+                        className="px-3 border-none text-start items-start hover:font-bold hover:text-white hover:bg-[#035372] "
                       >
                         LogOut
                       </button>
@@ -106,22 +106,12 @@ const Navbar = () => {
                   </ul>
                 )}
               </div>
-
-              {/* <button
-                onClick={handleLogout}
-                className="btn px-10 bg-[#388148] text-white"
-              >
-                LogOut
-              </button> */}
             </div>
           ) : (
             <div>
-              <Link to="/login" className="btn  text-white bg-[#CE2600]">
+              <Link to="/login" className="btn  text-white bg-[#035372]">
                 LogIn
               </Link>
-              {/* <Link to="/register" className="btn  text-white bg-[#CE2600]">
-                Register
-              </Link> */}
             </div>
           )}
         </div>
