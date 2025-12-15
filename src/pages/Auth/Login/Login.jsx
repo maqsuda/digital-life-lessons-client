@@ -27,17 +27,20 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full mx-auto max-w-sm shrink-0 pt-10 shadow-xl  min-h-screen bg-opacity-20">
-      <h3 className="text-3xl text-center">Welcome back</h3>
-      <p className="text-center">Please Login</p>
+    <div className="w-full mx-auto max-w-sm shrink-0 pt-10  min-h-screen bg-opacity-20">
       <form
         className="card-body backdrop-blur-xl bg-white/10 border border-white/20 
-                shadow-2xl pt-10 rounded-2xl w-80 text-white"
+                shadow-2xl pt-10 rounded-2xl "
         onSubmit={handleSubmit(handleLogin)}
       >
+        <h3 className="text-3xl text-center text-secondary">
+          Digital Life Lessons
+        </h3>
+
+        <p className="text-center text-white font-bold">Please Login</p>
         <fieldset className="fieldset">
           {/* email field */}
-          <label className="label">Email</label>
+          <label className="label text-white">Email</label>
           <input
             type="email"
             {...register("email", { required: true })}
@@ -49,7 +52,7 @@ const Login = () => {
           )}
 
           {/* password field */}
-          <label className="label">Password</label>
+          <label className="label text-white">Password</label>
           <input
             type="password"
             {...register("password", { required: true, minLength: 6 })}
@@ -63,22 +66,24 @@ const Login = () => {
           )}
 
           <div>
-            <a className="link link-hover">Forgot password?</a>
+            <a className="link link-hover text-white">Forgot password?</a>
           </div>
-          <button className="btn btn-neutral mt-4">Login</button>
+          <button className="btn text-white bg-primary border-0 mt-4 hover:text-secondary hover:underline hover:cursor-pointer">
+            Login
+          </button>
         </fieldset>
-        <p>
-          New to Zap Shift{" "}
+        <p className="font-bold">
+          <span className="text-white">New to </span>
           <Link
             state={location.state}
-            className="text-blue-400 underline"
+            className="text-secondary hover:underline hover:cursor-pointer "
             to="/register"
           >
             Register
           </Link>
         </p>
+        <SocialLogin></SocialLogin>
       </form>
-      <SocialLogin></SocialLogin>
     </div>
   );
 };

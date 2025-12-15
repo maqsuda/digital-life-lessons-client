@@ -5,7 +5,7 @@ import Footer from "../../pages/Footer/Footer";
 
 const HomeLayout = () => {
   return (
-    <div className="pt-2 w-11/12 mx-auto">
+    <div className="pt-2 w-11/12 mx-auto pb-10">
       <Navbar></Navbar>
       <Outlet></Outlet>
       <Footer></Footer>

@@ -1,12 +1,11 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import SocialLogin from "../SocialLogin/SocialLogin";
-
-
-// import axios from "axios";
-// import useAuth from "../../../hooks/useAuth";
+import useAuth from "../../../hooks/useAuth";
+import axios from "axios";
+import Logo from "../../logo/Logo";
 
 const Register = () => {
   const {
@@ -14,49 +13,46 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  // const { registerUser, updateUserProfile } = useAuth();
+  const { registerUser, updateUserProfile } = useAuth();
   const location = useLocation();
-  //   const navigate = useNavigate();
+  const navigate = useNavigate();
 
   console.log("in register", location);
 
   const handleRegistration = (data) => {
     console.log("after register", data.photo[0]);
-    // const profileImg = data.photo[0];
+    const profileImg = data.photo[0];
 
-    // registerUser(data.email, data.password)
-    //   .then((result) => {
-    //     console.log(result.user);
+    registerUser(data.email, data.password)
+      .then((result) => {
+        console.log(result.user);
 
-    //     // 1. store the image in form data
-    //     const formData = new FormData();
-    //     formData.append("image", profileImg);
+        const formData = new FormData();
+        formData.append("image", profileImg);
 
-    //     // 2. send the photo to store and get the ul
-    //     const image_API_URL = `https://api.imgbb.com/1/upload?key=${
-    //       import.meta.env.VITE_image_host_key
-    //     }`;
+        const image_API_URL = `https://api.imgbb.com/1/upload?key=${
+          import.meta.env.VITE_image_host_key
+        }`;
 
-    //     axios.post(image_API_URL, formData).then((res) => {
-    //       console.log("after image upload", res.data.data.url);
+        axios.post(image_API_URL, formData).then((res) => {
+          console.log("after image upload", res.data.data.url);
 
-    //       // update user profile to firebase
-    //       const userProfile = {
-    //         displayName: data.name,
-    //         photoURL: res.data.data.url,
-    //       };
+          const userProfile = {
+            displayName: data.name,
+            photoURL: res.data.data.url,
+          };
 
-    //       updateUserProfile(userProfile)
-    //         .then(() => {
-    //           console.log("user profile updated done.");
-    //           navigate(location.state || "/");
-    //         })
-    //         .catch((error) => console.log(error));
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+          updateUserProfile(userProfile)
+            .then(() => {
+              console.log("profile updated.");
+              navigate(location.state || "/");
+            })
+            .catch((error) => console.log(error));
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
@@ -64,17 +60,21 @@ const Register = () => {
       <div className="flex justify-between gap-10">
         <div
           className="backdrop-blur-xl bg-white/10 border border-white/20 
-                shadow-2xl pt-10 rounded-2xl w-80 text-white"
+                shadow-2xl rounded-2xl "
         >
-          <h3 className="text-3xl text-center">Welcome to Zap Shift</h3>
-          <p className="text-center">Please Register</p>
+          <h3 className="text-3xl text-center text-secondary">
+            Welcome to <br></br> Digital Life Lessons
+          </h3>
+          <p className="text-center text-white font-bold pt-5">
+            Please Register
+          </p>
           <form
-            className="card-body  "
+            className="card-body"
             onSubmit={handleSubmit(handleRegistration)}
           >
             <fieldset className="fieldset">
               {/* name field */}
-              <label className="label">Name</label>
+              <label className="label text-white">Name</label>
               <input
                 type="text"
                 {...register("name", { required: true })}
@@ -86,7 +86,7 @@ const Register = () => {
               )}
 
               {/* photo image field */}
-              <label className="label">Photo</label>
+              <label className="label text-white">Photo</label>
 
               <input
                 type="file"
@@ -100,7 +100,7 @@ const Register = () => {
               )}
 
               {/* email field */}
-              <label className="label">Email</label>
+              <label className="label text-white">Email</label>
               <input
                 type="email"
                 {...register("email", { required: true })}
@@ -112,7 +112,7 @@ const Register = () => {
               )}
 
               {/* password */}
-              <label className="label">Password</label>
+              <label className="label text-white">Password</label>
               <input
                 type="password"
                 {...register("password", {
@@ -141,22 +141,26 @@ const Register = () => {
               )}
 
               <div>
-                <a className="link link-hover">Forgot password?</a>
+                <a className="link link-hover text-white hover:text-secondary">
+                  Forgot password?
+                </a>
               </div>
-              <button className="btn btn-neutral mt-4">Register</button>
+              <button className="btn bg-primary mt-4 text-white font-bold hover:text-secondary hover:cursor-pointer border-0">
+                Register
+              </button>
             </fieldset>
-            <p>
+            <p className="text-white">
               Already have an account{" "}
               <Link
                 state={location.state}
-                className="text-blue-400 underline"
+                className="text-secondary hover:underline font-bold"
                 to="/login"
               >
                 Login
               </Link>
             </p>
-            <SocialLogin></SocialLogin>
           </form>
+          <SocialLogin></SocialLogin>
         </div>
         {/* <div>
           <img src={img} alt="" className="bg-transparent" />
