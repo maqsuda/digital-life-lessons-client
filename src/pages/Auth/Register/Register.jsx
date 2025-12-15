@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 import { Link, useLocation, useNavigate } from "react-router";
@@ -6,6 +6,9 @@ import SocialLogin from "../SocialLogin/SocialLogin";
 import useAuth from "../../../hooks/useAuth";
 import axios from "axios";
 import Logo from "../../logo/Logo";
+import { FaEye } from "react-icons/fa";
+import { LuEyeClosed } from "react-icons/lu";
+import { sendEmailVerification } from "firebase/auth";
 
 const Register = () => {
   const {
@@ -14,6 +17,7 @@ const Register = () => {
     formState: { errors },
   } = useForm();
   const { registerUser, updateUserProfile } = useAuth();
+  const [showPassword, setShowPassword] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -21,7 +25,7 @@ const Register = () => {
 
   const handleRegistration = (data) => {
     console.log("after register", data.photo[0]);
-    const profileImg = data.photo[0];
+    const profileImg = event.photo[0];
 
     registerUser(data.email, data.password)
       .then((result) => {
@@ -38,7 +42,7 @@ const Register = () => {
           console.log("after image upload", res.data.data.url);
 
           const userProfile = {
-            displayName: data.name,
+            displayName: event.name,
             photoURL: res.data.data.url,
           };
 
@@ -49,10 +53,19 @@ const Register = () => {
             })
             .catch((error) => console.log(error));
         });
+
+        sendEmailVerification(result.user).then(() => {
+          alert("Please verify your email");
+        });
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  const handleShowPassword = (event) => {
+    event.preventDefault();
+    setShowPassword(!showPassword);
   };
 
   return (
@@ -111,34 +124,42 @@ const Register = () => {
                 <p className="text-red-500">Email is required.</p>
               )}
 
-              {/* password */}
-              <label className="label text-white">Password</label>
-              <input
-                type="password"
-                {...register("password", {
-                  required: true,
-                  minLength: 6,
-                  pattern:
-                    /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).+$/,
-                })}
-                className="input"
-                placeholder="Password"
-              />
-              {errors.password?.type === "required" && (
-                <p className="text-red-500">Password is required.</p>
-              )}
-              {errors.password?.type === "minLength" && (
-                <p className="text-red-500">
-                  Password must be 6 characters or longer
-                </p>
-              )}
-              {errors.password?.type === "pattern" && (
-                <p className="text-red-500">
-                  Password must have at least one uppercase, at least one
-                  lowercase, at least one number, and at least one special
-                  characters
-                </p>
-              )}
+              <div className="relative">
+                {/* password */}
+                <label className="label text-white">Password</label>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  {...register("password", {
+                    required: true,
+                    minLength: 6,
+                    pattern:
+                      /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[^A-Za-z0-9]).+$/,
+                  })}
+                  className="input"
+                  placeholder="Password"
+                />
+                {errors.password?.type === "required" && (
+                  <p className="text-red-500">Password is required.</p>
+                )}
+                {errors.password?.type === "minLength" && (
+                  <p className="text-red-500">
+                    Password must be 6 characters or longer
+                  </p>
+                )}
+                {errors.password?.type === "pattern" && (
+                  <p className="text-red-500">
+                    Password must have at least one uppercase, at least one
+                    lowercase, at least one number, and at least one special
+                    characters
+                  </p>
+                )}
+                <button
+                  onClick={handleShowPassword}
+                  className="btn btn-xs absolute top-7 right-0 bg-white border-none text-lg font-bold"
+                >
+                  {showPassword ? <FaEye /> : <LuEyeClosed />}
+                </button>
+              </div>
 
               <div>
                 <a className="link link-hover text-white hover:text-secondary">
