@@ -7,6 +7,7 @@ import { FaEye } from "react-icons/fa";
 import { LuEyeClosed } from "react-icons/lu";
 import { sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../../../firebase/firebase.init";
+// import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Login = () => {
   const {
@@ -14,6 +15,9 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  // const axiosSecure = useAxiosSecure();
+
   const [showPassword, setShowPassword] = useState(false);
   const emailRef = useRef();
   const { signInUser } = useAuth();

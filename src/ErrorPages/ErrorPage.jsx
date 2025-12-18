@@ -1,5 +1,8 @@
 import React from "react";
 import { FaArrowLeft } from "react-icons/fa";
+import Navbar from "../pages/Navbar/Navbar";
+import { NavLink } from "react-router";
+import Footer from "../pages/Footer/Footer";
 
 const ErrorPage = () => {
   return (

@@ -7,6 +7,14 @@ import AuthLayout from "../layouts/AuthLayout/AuthLayout";
 import Register from "../pages/Auth/Register/Register";
 import ErrorPage from "../ErrorPages/ErrorPage";
 import Profile from "../pages/Profile/Profile";
+import Pricing from "../pages/Pricing/Pricing";
+import TopContributorsOfTheWeek from "../pages/TopContributorsOfTheWeek/TopContributorsOfTheWeek";
+import MostSavedLessons from "../pages/MostSavedLessons/MostSavedLessons";
+import WhyLearningFromLifeMattersSection from "../pages/WhyLearningFromLifeMattersSection/WhyLearningFromLifeMattersSection";
+import FeaturedLifeLessonsSection from "../pages/FeaturedLifeLessonsSection/FeaturedLifeLessonsSection";
+import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
+import PrivateRoute from "./PrivateRoute";
+import AddLessons from "../pages/Lessons/AddLessons";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +24,26 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: "pricing",
+        Component: Pricing,
+      },
+      {
+        path: "topContributorsOfTheWeek",
+        Component: TopContributorsOfTheWeek,
+      },
+      {
+        path: "mostSavedLessons",
+        Component: MostSavedLessons,
+      },
+      {
+        path: "whyLearningFromLifeMattersSection",
+        Component: WhyLearningFromLifeMattersSection,
+      },
+      {
+        path: "featuredLifeLessonsSection",
+        Component: FeaturedLifeLessonsSection,
       },
     ],
   },
@@ -34,6 +62,20 @@ const router = createBrowserRouter([
       {
         path: "profile",
         Component: Profile,
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "addLessons",
+        Component: AddLessons,
       },
     ],
   },

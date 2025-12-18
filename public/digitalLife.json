@@ -1,0 +1,146 @@
+[
+  {
+    "lessonTitle": "Failure Is a Teacher, Not a Verdict",
+    "shortDescriptionPreview": "Every setback carries feedback if you're willing to listen.",
+    "category": "Personal Growth",
+    "emotionalTone": "Reflective",
+    "creatorInfo": {
+      "name": "Alex Morgan",
+      "photo": "https://example.com/photos/alex-morgan.jpg"
+    },
+    "accessLevel": "public",
+    "createdDate": "2024-01-15"
+  },
+  {
+    "lessonTitle": "Consistency Beats Motivation",
+    "shortDescriptionPreview": "Small actions done daily outperform bursts of inspiration.",
+    "category": "Productivity",
+    "emotionalTone": "Motivational",
+    "creatorInfo": {
+      "name": "Jamie Lee",
+      "photo": "https://example.com/photos/jamie-lee.jpg"
+    },
+    "accessLevel": "public",
+    "createdDate": "2024-02-02"
+  },
+  {
+    "lessonTitle": "You Teach People How to Treat You",
+    "shortDescriptionPreview": "Boundaries define the quality of your relationships.",
+    "category": "Relationships",
+    "emotionalTone": "Empowering",
+    "creatorInfo": {
+      "name": "Sofia Ramirez",
+      "photo": "https://example.com/photos/sofia-ramirez.jpg"
+    },
+    "accessLevel": "public",
+    "createdDate": "2024-02-20"
+  },
+  {
+    "lessonTitle": "Rest Is Productive",
+    "shortDescriptionPreview": "Burnout is not a badge of honor; recovery fuels growth.",
+    "category": "Wellness",
+    "emotionalTone": "Calming",
+    "creatorInfo": {
+      "name": "Daniel Cho",
+      "photo": "https://example.com/photos/daniel-cho.jpg"
+    },
+    "accessLevel": "friends",
+    "createdDate": "2024-03-05"
+  },
+  {
+    "lessonTitle": "Comparison Steals Joy",
+    "shortDescriptionPreview": "Your path makes sense only when you stop measuring it against others.",
+    "category": "Mindset",
+    "emotionalTone": "Honest",
+    "creatorInfo": {
+      "name": "Priya Nair",
+      "photo": "https://example.com/photos/priya-nair.jpg"
+    },
+    "accessLevel": "public",
+    "createdDate": "2024-03-18"
+  },
+  {
+    "lessonTitle": "Learning Never Ends",
+    "shortDescriptionPreview": "Staying curious keeps you adaptable in a changing world.",
+    "category": "Education",
+    "emotionalTone": "Inspiring",
+    "creatorInfo": {
+      "name": "Marcus Hill",
+      "photo": "https://example.com/photos/marcus-hill.jpg"
+    },
+    "accessLevel": "public",
+    "createdDate": "2024-04-01"
+  },
+  {
+    "lessonTitle": "Silence Can Be an Answer",
+    "shortDescriptionPreview": "Not every situation deserves your reaction or explanation.",
+    "category": "Emotional Intelligence",
+    "emotionalTone": "Thoughtful",
+    "creatorInfo": {
+      "name": "Lena Fischer",
+      "photo": "https://example.com/photos/lena-fischer.jpg"
+    },
+    "accessLevel": "friends",
+    "createdDate": "2024-04-14"
+  },
+  {
+    "lessonTitle": "Money Reflects Habits, Not Income",
+    "shortDescriptionPreview": "Financial stability grows from awareness and discipline.",
+    "category": "Finance",
+    "emotionalTone": "Practical",
+    "creatorInfo": {
+      "name": "Ethan Brooks",
+      "photo": "https://example.com/photos/ethan-brooks.jpg"
+    },
+    "accessLevel": "public",
+    "createdDate": "2024-04-29"
+  },
+  {
+    "lessonTitle": "Fear Shrinks When Faced",
+    "shortDescriptionPreview": "Action dissolves anxiety faster than overthinking.",
+    "category": "Courage",
+    "emotionalTone": "Encouraging",
+    "creatorInfo": {
+      "name": "Noah Patel",
+      "photo": "https://example.com/photos/noah-patel.jpg"
+    },
+    "accessLevel": "public",
+    "createdDate": "2024-05-10"
+  },
+  {
+    "lessonTitle": "Listen to Understand, Not to Reply",
+    "shortDescriptionPreview": "True listening deepens trust and connection.",
+    "category": "Communication",
+    "emotionalTone": "Empathetic",
+    "creatorInfo": {
+      "name": "Hannah Wilson",
+      "photo": "https://example.com/photos/hannah-wilson.jpg"
+    },
+    "accessLevel": "public",
+    "createdDate": "2024-05-22"
+  },
+  {
+    "lessonTitle": "Your Environment Shapes You",
+    "shortDescriptionPreview": "People, spaces, and habits quietly influence your future.",
+    "category": "Lifestyle",
+    "emotionalTone": "Awakening",
+    "creatorInfo": {
+      "name": "Omar Khalid",
+      "photo": "https://example.com/photos/omar-khalid.jpg"
+    },
+    "accessLevel": "private",
+    "createdDate": "2024-06-03"
+  },
+  {
+    "lessonTitle": "Progress Is Rarely Linear",
+    "shortDescriptionPreview": "Growth includes pauses, setbacks, and unexpected leaps.",
+    "category": "Self-Development",
+    "emotionalTone": "Reassuring",
+    "creatorInfo": {
+      "name": "Emily Chen",
+      "photo": "https://example.com/photos/emily-chen.jpg"
+    },
+    "accessLevel": "public",
+    "createdDate": "2024-06-15"
+  }
+]

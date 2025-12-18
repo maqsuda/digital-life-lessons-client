@@ -1,5 +1,6 @@
 import React from "react";
 import useAuth from "../hooks/useAuth";
+import Loading from "../pages/Loading/Loading";
 
 const PrivateRoute = ({ children }) => {
   const { user, loading } = useAuth();
@@ -7,7 +8,7 @@ const PrivateRoute = ({ children }) => {
   if (loading) {
     return (
       <div>
-        <span className="loading loading-bars loading-xl"></span>
+        <Loading></Loading>
       </div>
     );
   }

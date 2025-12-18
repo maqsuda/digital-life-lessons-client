@@ -2,6 +2,8 @@ import { Link, NavLink } from "react-router";
 import { useState } from "react";
 import Logo from "../logo/Logo";
 import useAuth from "../../hooks/useAuth";
+import { FaStairs, FaStar } from "react-icons/fa6";
+import { IoDiamond } from "react-icons/io5";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -66,16 +68,32 @@ const Navbar = () => {
             <div className="flex gap-3">
               {/* Drop Down */}
               <div className="dropdown">
-                <button onClick={toggleDropdown} className="dropdown-button">
-                  <img
-                    src={user.photoURL}
-                    className="size-12 rounded-full"
-                  ></img>
-                </button>
+                <div className="flex gap-2 items-center">
+                  <button>
+                    <Link to="/pricing">
+                      <span className="flex gap-2 justify-center items-center bg-primary text-white font-bold rounded-2xl px-2">
+                        {/* Premium <FaStar className="text-yellow-500"></FaStar> */}
+                        <IoDiamond /> Upgrade to Premium
+                      </span>
+                    </Link>
+                  </button>
+
+                  <button onClick={toggleDropdown} className="dropdown-button">
+                    <img
+                      src={user.photoURL}
+                      className="size-12 rounded-full"
+                    ></img>
+                  </button>
+                </div>
 
                 {open && (
                   <ul className="menu dropdown-content dropdown-right bg-[#F0F0F1]">
                     {/* <li className="pt-5"> {user && user.email}</li> */}
+
+                    <li className="px-2 w-[220px] hover:font-bold hover:text-white hover:bg-[#035372]">
+                      {" "}
+                      {user && user.displayName}
+                    </li>
 
                     <li className="">
                       <NavLink
@@ -111,6 +129,9 @@ const Navbar = () => {
             <div>
               <Link to="/login" className="btn  text-white bg-[#035372]">
                 LogIn
+              </Link>
+              <Link to="/register" className="btn  text-white bg-[#035372]">
+                Register
               </Link>
             </div>
           )}

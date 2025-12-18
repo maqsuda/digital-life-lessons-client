@@ -9,6 +9,7 @@ import Logo from "../../logo/Logo";
 import { FaEye } from "react-icons/fa";
 import { LuEyeClosed } from "react-icons/lu";
 import { sendEmailVerification } from "firebase/auth";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Register = () => {
   const {
@@ -16,6 +17,7 @@ const Register = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const axiosSecure = useAxiosSecure();
   const { registerUser, updateUserProfile } = useAuth();
   const [showPassword, setShowPassword] = useState(false);
   const location = useLocation();
@@ -25,11 +27,14 @@ const Register = () => {
 
   const handleRegistration = (data) => {
     console.log("after register", data.photo[0]);
-    const profileImg = event.photo[0];
+    const profileImg = data.photo[0];
+
+    data.access_level = "Free";
+    data.price=0;
 
     registerUser(data.email, data.password)
       .then((result) => {
-        console.log(result.user);
+        axiosSecure.post("/users", data).then((res) => console.log(res.data));
 
         const formData = new FormData();
         formData.append("image", profileImg);
