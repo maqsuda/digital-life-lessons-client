@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, NavLink, Outlet } from "react-router";
 import Logo from "../../pages/logo/Logo";
-import { MdOutlinePlayLesson } from "react-icons/md";
+import { MdOutlinePlayLesson, MdPlayLesson } from "react-icons/md";
 
 const DashboardLayout = () => {
   return (
@@ -72,12 +72,22 @@ const DashboardLayout = () => {
             </li>
             <li>
               <NavLink
-                to="/dashboard/addLessons"
+                to="/dashboard/add-lessons"
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
                 data-tip="Add Lesson"
               >
                 <MdOutlinePlayLesson />
-                {/* <span className="is-drawer-close:hidden">Add Lesson</span> */}
+                <span className="is-drawer-close:hidden">Add Lesson</span>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/dashboard/my-lessons"
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="My Lesson"
+              >
+                <MdPlayLesson />
+                <span className="is-drawer-close:hidden">My Lesson</span>
               </NavLink>
             </li>
             {/* List item */}

@@ -8,7 +8,8 @@
       "name": "Alex Morgan",
       "photo": "https://example.com/photos/alex-morgan.jpg"
     },
-    "accessLevel": "public",
+    "privacy": "public",
+    "accessLevel": "Free",
     "createdDate": "2024-01-15"
   },
   {
@@ -20,7 +21,8 @@
       "name": "Jamie Lee",
       "photo": "https://example.com/photos/jamie-lee.jpg"
     },
-    "accessLevel": "public",
+    "privacy": "public",
+    "accessLevel": "Free",
     "createdDate": "2024-02-02"
   },
   {
@@ -32,7 +34,8 @@
       "name": "Sofia Ramirez",
       "photo": "https://example.com/photos/sofia-ramirez.jpg"
     },
-    "accessLevel": "public",
+    "privacy": "public",
+    "accessLevel": "Free",
     "createdDate": "2024-02-20"
   },
   {
@@ -44,7 +47,8 @@
       "name": "Daniel Cho",
       "photo": "https://example.com/photos/daniel-cho.jpg"
     },
-    "accessLevel": "friends",
+    "privacy": "private",
+    "accessLevel": "Free",
     "createdDate": "2024-03-05"
   },
   {
@@ -56,7 +60,8 @@
       "name": "Priya Nair",
       "photo": "https://example.com/photos/priya-nair.jpg"
     },
-    "accessLevel": "public",
+    "privacy": "public",
+    "accessLevel": "Free",
     "createdDate": "2024-03-18"
   },
   {
@@ -68,7 +73,8 @@
       "name": "Marcus Hill",
       "photo": "https://example.com/photos/marcus-hill.jpg"
     },
-    "accessLevel": "public",
+    "privacy": "public",
+    "accessLevel": "Premium",
     "createdDate": "2024-04-01"
   },
   {
@@ -80,7 +86,8 @@
       "name": "Lena Fischer",
       "photo": "https://example.com/photos/lena-fischer.jpg"
     },
-    "accessLevel": "friends",
+    "privacy": "private",
+    "accessLevel": "Premium",
     "createdDate": "2024-04-14"
   },
   {
@@ -92,7 +99,8 @@
       "name": "Ethan Brooks",
       "photo": "https://example.com/photos/ethan-brooks.jpg"
     },
-    "accessLevel": "public",
+    "privacy": "public",
+    "accessLevel": "Premium",
     "createdDate": "2024-04-29"
   },
   {
@@ -104,7 +112,8 @@
       "name": "Noah Patel",
       "photo": "https://example.com/photos/noah-patel.jpg"
     },
-    "accessLevel": "public",
+    "privacy": "public",
+    "accessLevel": "Premium",
     "createdDate": "2024-05-10"
   },
   {
@@ -116,7 +125,8 @@
       "name": "Hannah Wilson",
       "photo": "https://example.com/photos/hannah-wilson.jpg"
     },
-    "accessLevel": "public",
+    "privacy": "public",
+    "accessLevel": "Premium",
     "createdDate": "2024-05-22"
   },
   {
@@ -128,7 +138,8 @@
       "name": "Omar Khalid",
       "photo": "https://example.com/photos/omar-khalid.jpg"
     },
-    "accessLevel": "private",
+    "privacy": "private",
+    "accessLevel": "Premium",
     "createdDate": "2024-06-03"
   },
   {
@@ -140,7 +151,8 @@
       "name": "Emily Chen",
       "photo": "https://example.com/photos/emily-chen.jpg"
     },
-    "accessLevel": "public",
+    "privacy": "public",
+    "accessLevel": "Premium",
     "createdDate": "2024-06-15"
   }
 ]

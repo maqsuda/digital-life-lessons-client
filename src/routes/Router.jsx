@@ -15,6 +15,7 @@ import FeaturedLifeLessonsSection from "../pages/FeaturedLifeLessonsSection/Feat
 import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
 import AddLessons from "../pages/Lessons/AddLessons";
+import MyLessons from "../pages/Lessons/MyLessons";
 
 const router = createBrowserRouter([
   {
@@ -74,8 +75,13 @@ const router = createBrowserRouter([
     ),
     children: [
       {
-        path: "addLessons",
+        path: "add-lessons",
         Component: AddLessons,
+        loader: () => fetch("/digitalLife.json").then((res) => res.json()),
+      },
+      {
+        path: "my-lessons",
+        Component: MyLessons,
       },
     ],
   },
