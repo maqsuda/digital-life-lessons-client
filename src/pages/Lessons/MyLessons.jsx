@@ -16,7 +16,39 @@ const MyLessons = () => {
 
   return (
     <div>
-      <h2>My Lessons {myLessons.length}</h2>
+      <h2 className="text-2xl font-bold pt-5 text-center">
+        My Lessons : {myLessons.length}
+      </h2>
+
+      <div className="overflow-x-auto px-5">
+        <table className="table table-zebra">
+          {/* head */}
+          <thead>
+            <tr>
+              <th></th>
+              <th>Title</th>
+              <th>Description</th>
+              <th>Category</th>
+              <th>Emotional Tone</th>
+              <th>Privacy</th>
+              <th>Access Level</th>
+            </tr>
+          </thead>
+          <tbody>
+            {myLessons.map((lesson, index) => (
+              <tr key={lesson._id}>
+                <th>{index + 1}</th>
+                <td>{lesson.title}</td>
+                <td>{lesson.description}</td>
+                <td>{lesson.category}</td>
+                <td>{lesson.emotionalTone}</td>
+                <td>{lesson.privacy}</td>
+                <td>{lesson.accessLevel}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
