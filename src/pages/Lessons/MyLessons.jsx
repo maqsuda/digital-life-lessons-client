@@ -1,18 +1,54 @@
 import { useQuery } from "@tanstack/react-query";
-import React from "react";
 import useAuth from "../../hooks/useAuth";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { FaTrash } from "react-icons/fa";
+import { FiEdit } from "react-icons/fi";
+import { FaMagnifyingGlass } from "react-icons/fa6";
+import Swal from "sweetalert2";
 
 const MyLessons = () => {
   const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const { data: myLessons = [] } = useQuery({
+
+  const { data: myLessons = [], refetch } = useQuery({
     queryKey: ["myLessons", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/my-lessons?email=${user.email}`);
       return res.data;
     },
   });
+
+  const handleLessonDelete = (id) => {
+    console.log(id);
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      console.log(result);
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/my-lessons/${id}`).then((res) => {
+          // axiosSecure.delete(`/my-lessons/${id}`).then((res) => {
+          console.log("Data is :", res.data);
+
+          if (res.data.deletedCount) {
+            refetch();
+
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your lesson has been deleted.",
+              icon: "success",
+            });
+          }
+        });
+      }
+    });
+  };
 
   return (
     <div>
@@ -21,7 +57,7 @@ const MyLessons = () => {
       </h2>
 
       <div className="overflow-x-auto px-5">
-        <table className="table table-zebra">
+        <table className="table table-zebra text-xs">
           {/* head */}
           <thead>
             <tr>
@@ -32,9 +68,10 @@ const MyLessons = () => {
               <th>Emotional Tone</th>
               <th>Privacy</th>
               <th>Access Level</th>
+              <th>Action</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="">
             {myLessons.map((lesson, index) => (
               <tr key={lesson._id}>
                 <th>{index + 1}</th>
@@ -44,6 +81,27 @@ const MyLessons = () => {
                 <td>{lesson.emotionalTone}</td>
                 <td>{lesson.privacy}</td>
                 <td>{lesson.accessLevel}</td>
+                <td className="w-[150px]">
+                  <button
+                    className="btn btn-xs hover:bg-primary hover:text-white "
+                    title="Details View"
+                  >
+                    <FaMagnifyingGlass />
+                  </button>
+                  <button
+                    className="btn btn-xs hover:bg-primary hover:text-white"
+                    title="Edit"
+                  >
+                    <FiEdit />
+                  </button>
+                  <button
+                    onClick={() => handleLessonDelete(lesson._id)}
+                    className="btn btn-xs hover:bg-primary hover:text-white"
+                    title="Delete"
+                  >
+                    <FaTrash />
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

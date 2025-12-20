@@ -16,6 +16,7 @@ import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
 import AddLessons from "../pages/Lessons/AddLessons";
 import MyLessons from "../pages/Lessons/MyLessons";
+import Payment from "../pages/Lessons/Payment";
 
 const router = createBrowserRouter([
   {
@@ -82,6 +83,10 @@ const router = createBrowserRouter([
       {
         path: "my-lessons",
         Component: MyLessons,
+      },
+      {
+        path: "lessons/:email",
+        Component: Payment,
       },
     ],
   },

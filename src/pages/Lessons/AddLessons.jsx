@@ -84,11 +84,16 @@ const AddLessons = () => {
           <fieldset className="fieldset">
             <legend className="fieldset-legend">Category</legend>
             <select
-              {...register("category", { required: true })}
+              {...register("category", {
+                required: "Category is required",
+              })}
               className="select w-full"
-              defaultValue="Pick a Category"
+              defaultValue=""
             >
-              <option disabled={true}>Pick a Category</option>
+              <option value="" disabled>
+                Pick a Category
+              </option>
+
               {categorys.map((r, i) => (
                 <option key={i} value={r}>
                   {r}
@@ -96,18 +101,22 @@ const AddLessons = () => {
               ))}
             </select>
           </fieldset>
-          {errors.category?.type === "required" && (
-            <p className="text-red-500">Category is required.</p>
+          {errors.category && (
+            <p className="text-red-500">{errors.category.message}</p>
           )}
           {/* Emotional Tone field */}
           <fieldset className="fieldset">
             <legend className="fieldset-legend">Emotional Tone</legend>
             <select
-              {...register("emotionalTone", { required: true })}
+              {...register("emotionalTone", {
+                required: "Emotional Tone is Required",
+              })}
               className="select w-full"
-              defaultValue="Pick a Emotional Tone"
+              defaultValue=""
             >
-              <option disabled={true}>Pick a Emotional Tone</option>
+              <option disabled value="">
+                Pick a Emotional Tone
+              </option>
               {emotionalTones.map((r, i) => (
                 <option key={i} value={r}>
                   {r}
@@ -115,18 +124,20 @@ const AddLessons = () => {
               ))}
             </select>
           </fieldset>
-          {errors.emotionalTone?.type === "required" && (
-            <p className="text-red-500">Emotional Tone is required.</p>
+          {errors.emotionalTone && (
+            <p className="text-red-500">{errors.emotionalTone.message}</p>
           )}
           {/* Privacy field */}
           <fieldset className="fieldset">
             <legend className="fieldset-legend">Privacy</legend>
             <select
-              {...register("privacy", { required: true })}
+              {...register("privacy", { required: "Pick a Privacy" })}
               className="select w-full"
-              defaultValue="Pick a Privacy"
+              defaultValue=""
             >
-              <option disabled={true}>Pick a Privacy</option>
+              <option disabled value="">
+                Pick a Privacy
+              </option>
               {privacys.map((r, i) => (
                 <option key={i} value={r}>
                   {r}
@@ -134,18 +145,20 @@ const AddLessons = () => {
               ))}
             </select>
           </fieldset>
-          {errors.privacy?.type === "required" && (
-            <p className="text-red-500">Privacy is required.</p>
+          {errors.privacy && (
+            <p className="text-red-500">{errors.privacy.message}</p>
           )}
           {/* Access level Tone field */}
           <fieldset className="fieldset">
             <legend className="fieldset-legend">Access Level</legend>
             <select
-              {...register("accessLevel", { required: true })}
+              {...register("accessLevel", { required: "Pick a Access Level" })}
               className="select w-full"
-              defaultValue="Pick a Access Level"
+              defaultValue=""
             >
-              <option disabled={true}>Pick a Access Level</option>
+              <option disabled value="">
+                Pick a Access Level
+              </option>
               {accessLevels.map((r, i) => (
                 <option key={i} value={r}>
                   {r}
@@ -153,8 +166,8 @@ const AddLessons = () => {
               ))}
             </select>
           </fieldset>
-          {errors.accessLevel?.type === "required" && (
-            <p className="text-red-500">Access Level is required.</p>
+          {errors.accessLevel && (
+            <p className="text-red-500">{errors.accessLevel.message}</p>
           )}
           <span className=""></span>
           <button className="btn btn-primary">Add Lesson</button>
