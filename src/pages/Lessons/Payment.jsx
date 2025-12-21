@@ -7,6 +7,7 @@ import Loading from "../Loading/Loading";
 const Payment = () => {
   const { email } = useParams();
   const axiosSecure = useAxiosSecure();
+  
   const { isLoading, data: userInfo } = useQuery({
     queryKey: ["users", email],
     queryFn: async () => {
@@ -22,6 +23,7 @@ const Payment = () => {
       userEmail: userInfo.email,
       userName: userInfo.name,
     };
+    paymentInfo.cost = 1500;
     console.log(paymentInfo);
     const res = await axiosSecure.post("/create-checkout-session", paymentInfo);
     console.log(res.data);

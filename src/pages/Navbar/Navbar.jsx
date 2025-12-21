@@ -1,9 +1,13 @@
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useParams } from "react-router";
 import { useState } from "react";
 import Logo from "../logo/Logo";
 import useAuth from "../../hooks/useAuth";
 import { FaStairs, FaStar } from "react-icons/fa6";
 import { IoDiamond } from "react-icons/io5";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+// import { useQuery } from "@tanstack/react-query";
+import Loading from "../Loading/Loading";
+import { useQuery } from "@tanstack/react-query";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -15,6 +19,35 @@ const Navbar = () => {
       .then(() => {})
       .catch(() => {});
   };
+
+  const { email } = useParams();
+  const axiosSecure = useAxiosSecure();
+  const { isLoading, data: userInfo } = useQuery({
+    queryKey: ["users", email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/users/${user.email}`);
+      console.log("Query", res.data);
+      return res.data;
+    },
+  });
+
+  const handlePayment = async () => {
+    const paymentInfo = {
+      cost: userInfo.price,
+      userId: userInfo._id,
+      userEmail: userInfo.email,
+      userName: userInfo.name,
+    };
+    paymentInfo.cost = 1500;
+    console.log(paymentInfo);
+    const res = await axiosSecure.post("/create-checkout-session", paymentInfo);
+    console.log(res.data);
+    window.location.href = res.data.url;
+  };
+
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
 
   const links = (
     <>
@@ -69,13 +102,18 @@ const Navbar = () => {
               {/* Drop Down */}
               <div className="dropdown">
                 <div className="flex gap-2 items-center">
-                  <button>
+                  {/* <button>
                     <Link to={`/dashboard/users/${user.email}`}>
                       <span className="flex gap-2 justify-center items-center bg-primary text-white font-bold rounded-2xl px-2">
-                        {/* Premium <FaStar className="text-yellow-500"></FaStar> */}
                         <IoDiamond /> Upgrade to Premium
                       </span>
                     </Link>
+                  </button> */}
+
+                  <button onClick={handlePayment}>
+                    <span className="flex gap-2 justify-center items-center bg-primary text-white font-bold rounded-2xl px-2">
+                      <IoDiamond /> Upgrade to Premium
+                    </span>
                   </button>
 
                   <button onClick={toggleDropdown} className="dropdown-button">
