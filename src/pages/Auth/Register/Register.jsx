@@ -29,8 +29,8 @@ const Register = () => {
     console.log("after register", data.photo[0]);
     const profileImg = data.photo[0];
 
-    data.access_level = "Free";
-    data.price=0;
+    data.accessLevel = "Free";
+    data.price = 0;
 
     registerUser(data.email, data.password)
       .then((result) => {
@@ -47,7 +47,7 @@ const Register = () => {
           console.log("after image upload", res.data.data.url);
 
           const userProfile = {
-            displayName: event.name,
+            displayName: data.name,
             photoURL: res.data.data.url,
           };
 

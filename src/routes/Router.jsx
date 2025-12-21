@@ -17,6 +17,8 @@ import PrivateRoute from "./PrivateRoute";
 import AddLessons from "../pages/Lessons/AddLessons";
 import MyLessons from "../pages/Lessons/MyLessons";
 import Payment from "../pages/Lessons/Payment";
+import PaymentSuccess from "../pages/Lessons/PaymentSuccess";
+import PaymentCancelled from "../pages/Lessons/PaymentCancelled";
 
 const router = createBrowserRouter([
   {
@@ -85,8 +87,16 @@ const router = createBrowserRouter([
         Component: MyLessons,
       },
       {
-        path: "lessons/:email",
+        path: "users/:email",
         Component: Payment,
+      },
+      {
+        path: "payment-success",
+        Component: PaymentSuccess,
+      },
+      {
+        path: "payment-cancelled",
+        Component: PaymentCancelled,
       },
     ],
   },

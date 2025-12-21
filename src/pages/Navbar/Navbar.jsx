@@ -70,7 +70,7 @@ const Navbar = () => {
               <div className="dropdown">
                 <div className="flex gap-2 items-center">
                   <button>
-                    <Link to="/pricing">
+                    <Link to={`/dashboard/users/${user.email}`}>
                       <span className="flex gap-2 justify-center items-center bg-primary text-white font-bold rounded-2xl px-2">
                         {/* Premium <FaStar className="text-yellow-500"></FaStar> */}
                         <IoDiamond /> Upgrade to Premium
