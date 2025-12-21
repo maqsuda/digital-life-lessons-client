@@ -1,37 +1,34 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import Logo from "../logo/Logo";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import Loading from "../Loading/Loading";
+import useAuth from "../../hooks/useAuth";
+import Lesson from "./Lesson";
 
 const Lessons = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
+  const { isLoading, data: lessonInfo } = useQuery({
+    queryKey: ["lessons", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/allLessons`);
+      return res.data;
+    },
+  });
 
-  const handleAddLessons = () => {
-    console.log("Test");
-  };
+  if (isLoading) {
+    return <Loading></Loading>;
+  }
 
   return (
-    <div>
-      <h2>
-        <Logo></Logo>Add Lessons
-      </h2>
-      <form onSubmit={handleSubmit(handleAddLessons)}>
-        <fieldset className="fieldset">
-          {/* name field */}
-          <label className="label text-white">Name</label>
-          <input
-            type="text"
-            {...register("name", { required: true })}
-            className="input"
-            placeholder="Your Name"
-          />
-          {errors.name?.type === "required" && (
-            <p className="text-red-500">Name is required.</p>
-          )}
-        </fieldset>
-      </form>
+    <div className="bg-base-100 rounded-2xl my-2 px-5">
+      <h2 className="py-5 text-3xl text-center font-bold">All Lesson </h2>
+      <div className="grid grid-cols-3 gap-5 ">
+        {lessonInfo.map((lesson) => (
+          <Lesson key={lesson._id} lesson={lesson}></Lesson>
+        ))}
+      </div>
     </div>
   );
 };

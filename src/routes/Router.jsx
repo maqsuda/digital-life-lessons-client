@@ -19,6 +19,8 @@ import MyLessons from "../pages/Lessons/MyLessons";
 import Payment from "../pages/Lessons/Payment";
 import PaymentSuccess from "../pages/Lessons/PaymentSuccess";
 import PaymentCancelled from "../pages/Lessons/PaymentCancelled";
+import HomeLessons from "../pages/Lessons/HomeLessons";
+import Lessons from "../pages/Lessons/Lessons";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +30,10 @@ const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: "/public-lessons",
+        Component: Lessons,
       },
       {
         path: "pricing",
@@ -77,6 +83,11 @@ const router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      {
+        path: "/dashboard",
+        Component: HomeLessons,
+        // loader: () => fetch("/digitalLife.json").then((res) => res.json()),
+      },
       {
         path: "add-lessons",
         Component: AddLessons,

@@ -3,15 +3,17 @@ import React from "react";
 import { useParams } from "react-router";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Loading from "../Loading/Loading";
+import useAuth from "../../hooks/useAuth";
 
 const Payment = () => {
+  const { user } = useAuth();
   const { email } = useParams();
   const axiosSecure = useAxiosSecure();
-  
+
   const { isLoading, data: userInfo } = useQuery({
-    queryKey: ["users", email],
+    queryKey: ["users", user?.email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/users/${email}`);
+      const res = await axiosSecure.get(`/users?email=${email}`);
       return res.data;
     },
   });
