@@ -24,7 +24,7 @@ const Lessons = () => {
   return (
     <div className="bg-base-100 rounded-2xl my-2 px-5">
       <h2 className="py-5 text-3xl text-center font-bold">All Lesson </h2>
-      <div className="grid grid-cols-3 gap-5 ">
+      <div className="grid grid-cols-3 gap-5 py-5">
         {lessonInfo.map((lesson) => (
           <Lesson key={lesson._id} lesson={lesson}></Lesson>
         ))}

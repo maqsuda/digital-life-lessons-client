@@ -29,8 +29,8 @@ const AddLessons = () => {
   const accessLevels = [...new Set(accessLevelData)];
 
   const handleAddLesson = (data) => {
-    console.log("after register", data);
     data.CreateBy = user.email;
+    data.photo = user.photoURL;
     data.CreateDate = new Date();
     axiosSecure
       .post("/add-lessons", data)
@@ -161,7 +161,8 @@ const AddLessons = () => {
               </option>
               {accessLevels.map((r, i) => (
                 <option key={i} value={r}>
-                  {r}
+                  {                
+                    r}
                 </option>
               ))}
             </select>

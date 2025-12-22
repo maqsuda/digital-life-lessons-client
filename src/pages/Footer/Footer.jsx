@@ -6,9 +6,12 @@ const Footer = () => {
     <footer className="footer footer-horizontal footer-center bg-base-100 rounded-2xl text-primary p-10">
       <aside>
         <Logo></Logo>
-        <p className="font-bold">
-          <br />
-          Providing reliable tech since 1992
+        <p className="pt-5 ">
+          <nav>
+            <a className="link link-hover">Terms of use</a> |
+            <a className="link link-hover"> Privacy policy</a> |
+            <a className="link link-hover"> Cookie policy</a>
+          </nav>
         </p>
         <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
       </aside>
