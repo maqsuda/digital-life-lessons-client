@@ -10,7 +10,7 @@ const Payment = () => {
   const { email } = useParams();
   const axiosSecure = useAxiosSecure();
 
-  const { isLoading, data: userInfo } = useQuery({
+  const { isLoading, data: users } = useQuery({
     queryKey: ["users", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users?email=${email}`);
@@ -20,10 +20,10 @@ const Payment = () => {
 
   const handlePayment = async () => {
     const paymentInfo = {
-      cost: userInfo.price,
-      userId: userInfo._id,
-      userEmail: userInfo.email,
-      userName: userInfo.name,
+      cost: users?.price,
+      userId: users._id,
+      userEmail: users.email,
+      userName: users.name,
     };
     paymentInfo.cost = 1500;
     console.log(paymentInfo);

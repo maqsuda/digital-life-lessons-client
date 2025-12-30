@@ -3,7 +3,7 @@ import userIcon from "../../assets/user.png";
 import useAuth from "../../hooks/useAuth";
 
 const Profile = () => {
-  const { user, updateUser } = useAuth();
+  const { user, updateUserProfile } = useAuth();
   const [success, setSuccess] = useState(false);
 
   const handleUpdateProfile = (event) => {
@@ -17,7 +17,7 @@ const Profile = () => {
       displayName: name,
       photoURL: photo,
     };
-    updateUser(profile)
+    updateUserProfile(profile)
       .then(() => {
         // console.log(result.user);
         setSuccess(true);
