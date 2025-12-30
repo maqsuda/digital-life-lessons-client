@@ -4,7 +4,7 @@ const TopContributorsOfTheWeek = () => {
   return (
     <div>
       <h2>Top Contributors of the Week</h2>
-      <div className="grid grid-cols-3 gap-5 py-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 py-10">
         <div className="card bg-base-100 shadow-sm">
           <div className="card-body">
             <h2 className="card-title">Card title!</h2>

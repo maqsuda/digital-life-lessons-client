@@ -29,6 +29,7 @@ const AddLessons = () => {
   const accessLevels = [...new Set(accessLevelData)];
 
   const handleAddLesson = (data) => {
+    data.name = user.displayName;
     data.CreateBy = user.email;
     data.photo = user.photoURL;
     data.CreateDate = new Date();
@@ -161,8 +162,7 @@ const AddLessons = () => {
               </option>
               {accessLevels.map((r, i) => (
                 <option key={i} value={r}>
-                  {                
-                    r}
+                  {r}
                 </option>
               ))}
             </select>

@@ -3,23 +3,22 @@ import { AiOutlineLike } from "react-icons/ai";
 import { FaRegComment } from "react-icons/fa";
 import { FaRegShareFromSquare } from "react-icons/fa6";
 import { HiDotsHorizontal } from "react-icons/hi";
-import { ImCross, ImSad } from "react-icons/im";
+import { ImCross } from "react-icons/im";
 import { MdPublic } from "react-icons/md";
 import { RiChatPrivateFill } from "react-icons/ri";
 
-const Lesson = ({ lesson }) => {
+const FeatureLessonCard = ({ featureLesson }) => {
   const {
     title,
     description,
     category,
     privacy,
     accessLevel,
-    emotionalTone,
-    name,
     CreateBy,
+    name,
     photo,
     CreateDate,
-  } = lesson;
+  } = featureLesson;
 
   const creatingDate = new Date(CreateDate).toLocaleDateString("en-US", {
     year: "numeric",
@@ -81,10 +80,7 @@ const Lesson = ({ lesson }) => {
       </div>
       <div className="grid grid-cols-3 text-[10px] pt-2 items-center justify-center ">
         <div className="flex gap-1 items-center hover:bg-base-300 justify-center py-1">
-          {/* {emotionalTone === "Motivational" && <AiOutlineLike />}
-          {emotionalTone === "Sad" && <ImSad />}
-          {emotionalTone === "Motivational" && <AiOutlineLike />} */}
-          {emotionalTone}
+          <AiOutlineLike /> Like
         </div>
         <div className="flex gap-1 items-center hover:bg-base-300 justify-center py-1">
           <FaRegComment /> Comments
@@ -98,4 +94,4 @@ const Lesson = ({ lesson }) => {
   );
 };
 
-export default Lesson;
+export default FeatureLessonCard;

@@ -1,20 +1,43 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router";
 import useAuth from "../../../hooks/useAuth";
+import Swal from "sweetalert2";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const SocialLogin = () => {
   const { signInGoogle } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
 
   const handleGoogleSignIn = () => {
     signInGoogle()
       .then((result) => {
         console.log(result.user);
-        navigate(location.state || "/");
+        const newUser = {
+          name: result.user.displayName,
+          image: result.user.photoURL,
+          email: result.user.email,
+          password: "123",
+          accessLevel: "Free",
+          price: 0,
+        };
+        console.log(newUser);
+        axiosSecure
+          .post("/users", newUser)
+          .then((res) => console.log(res.data));
+
+        navigate(`${location.state ? location.state : "/"}`);
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "User Already Exists.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        // setError(error.message);
       });
   };
 

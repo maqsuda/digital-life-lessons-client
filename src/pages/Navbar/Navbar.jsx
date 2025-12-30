@@ -4,14 +4,14 @@ import Logo from "../logo/Logo";
 import useAuth from "../../hooks/useAuth";
 import { FaStairs, FaStar } from "react-icons/fa6";
 import { IoDiamond } from "react-icons/io5";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
+// import useAxiosSecure from "../../hooks/useAxiosSecure";
+// import { useQuery } from "@tanstack/react-query";
 import Loading from "../Loading/Loading";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const [open, setOpen] = useState(false);
-  const [isPremium, setIsPremium] = useState();
+  // const [isPremium, setIsPremium] = useState();
   const toggleDropdown = () => setOpen((dropdown) => !dropdown);
 
   const handleLogout = () => {
@@ -20,33 +20,33 @@ const Navbar = () => {
       .catch(() => {});
   };
 
-  const axiosSecure = useAxiosSecure();
-  const { isLoading, data: userInfo } = useQuery({
-    queryKey: ["users", user?.email],
-    queryFn: async () => {
-      const res = await axiosSecure.get(`/users/${user?.email}`);
-      setIsPremium(res.data.isPremium);
-      return res.data;
-    },
-  });
+  // const axiosSecure = useAxiosSecure();
+  // const { isLoading, data: userInfo } = useQuery({
+  //   queryKey: ["users", user?.email],
+  //   queryFn: async () => {
+  //     const res = await axiosSecure.get(`/users/${user?.email}`);
+  //     setIsPremium(res.data.isPremium);
+  //     return res.data;
+  //   },
+  // });
 
-  const handlePayment = async () => {
-    const paymentInfo = {
-      cost: userInfo.price,
-      userId: userInfo._id,
-      userEmail: userInfo.email,
-      userName: userInfo.name,
-    };
-    paymentInfo.cost = 1500;
-    // console.log(paymentInfo);
-    const res = await axiosSecure.post("/create-checkout-session", paymentInfo);
-    // console.log(res.data);
-    window.location.assign(res.data.url);
-  };
+  // const handlePayment = async () => {
+  //   const paymentInfo = {
+  //     cost: userInfo.price,
+  //     userId: userInfo._id,
+  //     userEmail: userInfo.email,
+  //     userName: userInfo.name,
+  //   };
+  //   paymentInfo.cost = 1500;
+  //   // console.log(paymentInfo);
+  //   const res = await axiosSecure.post("/create-checkout-session", paymentInfo);
+  //   // console.log(res.data);
+  //   window.location.assign(res.data.url);
+  // };
 
-  if (isLoading) {
-    return <Loading></Loading>;
-  }
+  // if (isLoading) {
+  //   return <Loading></Loading>;
+  // }
 
   const links = (
     <>
@@ -56,7 +56,7 @@ const Navbar = () => {
       <li className="hover:bg-[#035372] hover:text-white rounded-md">
         <NavLink to="/public-lessons">Public Lessons</NavLink>
       </li>
-      <li>{userInfo?.user?.price}</li>
+      {/* <li>{userInfo?.user?.price}</li> */}
     </>
   );
 
@@ -83,12 +83,14 @@ const Navbar = () => {
           </div>
           <ul
             tabIndex="-1"
-            className="menu menu-sm dropdown-content z-1 mt-3 w-52 p-2 hover:bg-secondary"
+            className="menu menu-sm bg-base-100 dropdown-content z-1 mt-3 w-52 p-2 hover:bg-secondary"
           >
             {links}
           </ul>
         </div>
-        <Logo></Logo>
+        <span className="hidden md:flex">
+          <Logo></Logo>
+        </span>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 ">{links}</ul>
@@ -102,15 +104,15 @@ const Navbar = () => {
               {/* Drop Down */}
               <div className="dropdown">
                 <div className="flex gap-2 items-center">
-                  {/* <button>
+                  <button>
                     <Link to={`/dashboard/users/${user.email}`}>
                       <span className="flex gap-2 justify-center items-center bg-primary text-white font-bold rounded-2xl px-2">
                         <IoDiamond /> Upgrade to Premium
                       </span>
                     </Link>
-                  </button> */}
+                  </button>
 
-                  {isPremium ? (
+                  {/* {isPremium ? (
                     <span className="flex gap-2 justify-center items-center text-primary font-bold rounded-2xl px-2">
                       Premium <FaStar className="text-yellow-300"></FaStar>
                     </span>
@@ -120,7 +122,7 @@ const Navbar = () => {
                         <IoDiamond /> Upgrade to Premium
                       </span>
                     </button>
-                  )}
+                  )} */}
 
                   <button onClick={toggleDropdown} className="dropdown-button">
                     <img

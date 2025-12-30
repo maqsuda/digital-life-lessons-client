@@ -3,16 +3,16 @@ import Logo from "../logo/Logo";
 
 const Footer = () => {
   return (
-    <footer className="footer footer-horizontal footer-center bg-base-100 rounded-2xl text-primary p-10">
+    <footer className="footer footer-horizontal footer-center bg-base-100 rounded-2xl text-primary p-5 md:p-10">
       <aside>
         <Logo></Logo>
-        <p className="pt-5 ">
-          <nav>
+        <div className="pt-5 ">
+          <nav className="md:text-xs">
             <a className="link link-hover">Terms of use</a> |
             <a className="link link-hover"> Privacy policy</a> |
             <a className="link link-hover"> Cookie policy</a>
           </nav>
-        </p>
+        </div>
         <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
       </aside>
       <nav>
