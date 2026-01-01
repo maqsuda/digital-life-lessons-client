@@ -5,6 +5,7 @@ import { FaTrash } from "react-icons/fa";
 import { FiEdit } from "react-icons/fi";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import Swal from "sweetalert2";
+import { NavLink } from "react-router";
 
 const MyLessons = () => {
   const { user } = useAuth();
@@ -88,12 +89,14 @@ const MyLessons = () => {
                   >
                     <FaMagnifyingGlass />
                   </button>
-                  <button
-                    className="btn btn-xs hover:bg-primary hover:text-white"
-                    title="Edit"
-                  >
-                    <FiEdit />
-                  </button>
+                  <NavLink to={`/dashboard/edit-lesson/${lesson._id}`}>
+                    <button
+                      className="btn btn-xs hover:bg-primary hover:text-white"
+                      title="Edit"
+                    >
+                      <FiEdit />
+                    </button>
+                  </NavLink>
                   <button
                     onClick={() => handleLessonDelete(lesson._id)}
                     className="btn btn-xs hover:bg-primary hover:text-white"

@@ -6,7 +6,6 @@ import Login from "../pages/Auth/Login/Login";
 import AuthLayout from "../layouts/AuthLayout/AuthLayout";
 import Register from "../pages/Auth/Register/Register";
 import ErrorPage from "../ErrorPages/ErrorPage";
-import Profile from "../pages/Profile/Profile";
 import Pricing from "../pages/Pricing/Pricing";
 import TopContributorsOfTheWeek from "../pages/TopContributorsOfTheWeek/TopContributorsOfTheWeek";
 import MostSavedLessons from "../pages/MostSavedLessons/MostSavedLessons";
@@ -21,6 +20,8 @@ import PaymentSuccess from "../pages/Lessons/PaymentSuccess";
 import PaymentCancelled from "../pages/Lessons/PaymentCancelled";
 import HomeLessons from "../pages/Lessons/HomeLessons";
 import Lessons from "../pages/Lessons/Lessons";
+import EditLesson from "../pages/Lessons/EditLesson";
+import Profile from "../pages/Lessons/Profile";
 
 const router = createBrowserRouter([
   {
@@ -89,13 +90,18 @@ const router = createBrowserRouter([
         // loader: () => fetch("/digitalLife.json").then((res) => res.json()),
       },
       {
-        path: "/dashboard/profile",
+        path: "profile",
         Component: Profile,
         // loader: () => fetch("/digitalLife.json").then((res) => res.json()),
       },
       {
         path: "add-lessons",
         Component: AddLessons,
+        loader: () => fetch("/digitalLife.json").then((res) => res.json()),
+      },
+      {
+        path: "edit-lesson/:lessonId",
+        Component: EditLesson,
         loader: () => fetch("/digitalLife.json").then((res) => res.json()),
       },
       {

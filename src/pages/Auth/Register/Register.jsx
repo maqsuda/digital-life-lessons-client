@@ -23,10 +23,8 @@ const Register = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  console.log("in register", location);
-
   const handleRegistration = (data) => {
-    console.log("after register", data.photo[0]);
+    // console.log("after register", data.photo[0]);
     const profileImg = data.photo[0];
 
     data.accessLevel = "Free";
@@ -34,8 +32,6 @@ const Register = () => {
 
     registerUser(data.email, data.password)
       .then((result) => {
-        axiosSecure.post("/users", data).then((res) => console.log(res.data));
-
         const formData = new FormData();
         formData.append("image", profileImg);
 
@@ -44,7 +40,20 @@ const Register = () => {
         }`;
 
         axios.post(image_API_URL, formData).then((res) => {
-          console.log("after image upload", res.data.data.url);
+          // console.log("after image upload", res.data.data.url);
+          const photoURL = res.data.data.url;
+
+          const userInfo = {
+            email: data.email,
+            displayName: data.name,
+            photoURL: photoURL,
+            accessLevel: data.accessLevel,
+            price: data.price,
+          };
+
+          axiosSecure
+            .post("/users", userInfo)
+            .then((res) => console.log(res.data));
 
           const userProfile = {
             displayName: data.name,
@@ -53,7 +62,7 @@ const Register = () => {
 
           updateUserProfile(userProfile)
             .then(() => {
-              console.log("profile updated.");
+              console.log("profile updated.", userProfile);
               navigate(location.state || "/");
             })
             .catch((error) => console.log(error));
