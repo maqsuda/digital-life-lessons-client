@@ -9,11 +9,13 @@ const Payment = () => {
   const { user } = useAuth();
   const { email } = useParams();
   const axiosSecure = useAxiosSecure();
+  console.log("email :", email);
 
   const { isLoading, data: users } = useQuery({
     queryKey: ["users", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users?email=${email}`);
+      console.log(res.data);
       return res.data;
     },
   });
@@ -21,12 +23,12 @@ const Payment = () => {
   const handlePayment = async () => {
     const paymentInfo = {
       cost: users?.price,
-      userId: users._id,
-      userEmail: users.email,
-      userName: users.name,
+      userId: users?._id,
+      userEmail: users?.email,
+      userName: users?.name,
     };
     paymentInfo.cost = 1500;
-    console.log(paymentInfo);
+    console.log("Payment Info", paymentInfo);
     const res = await axiosSecure.post("/create-checkout-session", paymentInfo);
     console.log(res.data);
     window.location.href = res.data.url;

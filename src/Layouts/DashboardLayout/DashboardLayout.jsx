@@ -2,6 +2,7 @@ import React from "react";
 import { Link, NavLink, Outlet } from "react-router";
 import Logo from "../../pages/logo/Logo";
 import { MdOutlinePlayLesson, MdPlayLesson } from "react-icons/md";
+import { ImProfile } from "react-icons/im";
 
 const DashboardLayout = () => {
   return (
@@ -90,31 +91,19 @@ const DashboardLayout = () => {
                 <span className="is-drawer-close:hidden">My Lesson</span>
               </NavLink>
             </li>
-            {/* List item */}
+
             <li>
-              <button
+              <NavLink
+                to={`/dashboard/profile`}
                 className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Settings"
+                data-tip="My Profile"
               >
-                {/* Settings icon */}
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  strokeLinejoin="round"
-                  strokeLinecap="round"
-                  strokeWidth="2"
-                  fill="none"
-                  stroke="currentColor"
-                  className="my-1.5 inline-block size-4"
-                >
-                  <path d="M20 7h-9"></path>
-                  <path d="M14 17H5"></path>
-                  <circle cx="17" cy="17" r="3"></circle>
-                  <circle cx="7" cy="7" r="3"></circle>
-                </svg>
-                <span className="is-drawer-close:hidden">Settings</span>
-              </button>
+                <ImProfile />
+                <span className="is-drawer-close:hidden">My Profile</span>
+              </NavLink>
             </li>
+
+            {/* List item */}
           </ul>
         </div>
       </div>

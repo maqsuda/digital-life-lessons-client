@@ -69,10 +69,10 @@ const router = createBrowserRouter([
         path: "register",
         Component: Register,
       },
-      {
-        path: "profile",
-        Component: Profile,
-      },
+      // {
+      //   path: "profile",
+      //   Component: Profile,
+      // },
     ],
   },
   {
@@ -86,6 +86,11 @@ const router = createBrowserRouter([
       {
         path: "/dashboard",
         Component: HomeLessons,
+        // loader: () => fetch("/digitalLife.json").then((res) => res.json()),
+      },
+      {
+        path: "/dashboard/profile",
+        Component: Profile,
         // loader: () => fetch("/digitalLife.json").then((res) => res.json()),
       },
       {

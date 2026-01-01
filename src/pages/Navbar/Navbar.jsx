@@ -61,8 +61,8 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-base-100 rounded-2xl visible sticky top-0 z-50 ">
-      <div className="navbar-start">
+    <div className="navbar bg-base-100 rounded-xl visible sticky top-0 z-50 px-10">
+      <div className="navbar-start ">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
@@ -136,11 +136,11 @@ const Navbar = () => {
                   <ul className="menu dropdown-content dropdown-right bg-[#F0F0F1]">
                     {/* <li className="pt-5"> {user && user.email}</li> */}
 
-                    <li className="px-2 w-[220px] hover:font-bold hover:text-white hover:bg-[#035372]">
+                    <li className="btn w-[220px] hover:font-bold">
                       {" "}
                       {user && user.displayName}
                     </li>
-
+                    {/* 
                     <li className="">
                       <NavLink
                         to="/profile"
@@ -148,21 +148,21 @@ const Navbar = () => {
                       >
                         Profile
                       </NavLink>
-                    </li>
+                    </li> */}
 
-                    <li>
+                    <li className="btn  hover:text-white hover:bg-[#035372]">
                       <NavLink
                         to="/dashboard"
-                        className="w-[120px] hover:font-bold hover:text-white hover:bg-[#035372] "
+                        className="w-[120px] hover:font-bold"
                       >
                         Dashboard
                       </NavLink>
                     </li>
 
-                    <li>
+                    <li className="btn  hover:text-white hover:bg-[#035372]">
                       <button
                         onClick={handleLogout}
-                        className="px-3 border-none text-start items-start hover:font-bold hover:text-white hover:bg-[#035372] "
+                        className="border-none text-start items-start hover:font-bold"
                       >
                         LogOut
                       </button>
