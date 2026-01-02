@@ -1,31 +1,31 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
-import { useParams } from "react-router";
+
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Loading from "../Loading/Loading";
-import useAuth from "../../hooks/useAuth";
+import { useParams } from "react-router";
 
 const Payment = () => {
-  const { user } = useAuth();
+  // const { user } = useAuth();
   const { email } = useParams();
   const axiosSecure = useAxiosSecure();
-  console.log("email :", email);
+  // console.log("email :", email);
 
-  const { isLoading, data: users } = useQuery({
-    queryKey: ["users", user?.email],
+  const { isLoading, data: userInfo } = useQuery({
+    queryKey: ["users", email],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/users?email=${email}`);
-      console.log(res.data);
+      const res = await axiosSecure.get(`/users/${email}`);
+      // console.log(res.data);
       return res.data;
     },
   });
 
   const handlePayment = async () => {
     const paymentInfo = {
-      cost: users?.price,
-      userId: users?._id,
-      userEmail: users?.email,
-      userName: users?.name,
+      cost: userInfo.price,
+      userId: userInfo._id,
+      userEmail: userInfo.email,
+      userName: userInfo.displayName,
     };
     paymentInfo.cost = 1500;
     console.log("Payment Info", paymentInfo);
@@ -39,7 +39,7 @@ const Payment = () => {
   }
 
   return (
-    <div>
+    <div className="h-max">
       <h2 className="text-center text-2xl font-bold py-5">
         Please Pay for : {email}
       </h2>

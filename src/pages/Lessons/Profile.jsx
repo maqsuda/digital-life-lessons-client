@@ -27,7 +27,7 @@ const Profile = () => {
     queryKey: ["user", user.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users/${user.email}`);
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
   });
@@ -80,7 +80,7 @@ const Profile = () => {
       <form className="card-body" onSubmit={handleSubmit(handleProfileUpdate)}>
         <fieldset className="fieldset">
           <div className="grid grid-cols-2 gap-2 ">
-            <div className="items-center justify-center">
+            <div className="items-center justify-center pt-12 pl-10">
               <div className="ml-5">
                 {/* photo image field */}
                 <div>

@@ -8,7 +8,7 @@ const AuthLayout = () => {
   return (
     <div>
       <Navbar></Navbar>
-      <div className="Login_Item flex justify-between items-center gap-10 px-20">
+      <div className="flex justify-between items-center gap-10 px-20">
         <div className="flex-1">
           <Outlet></Outlet>
         </div>

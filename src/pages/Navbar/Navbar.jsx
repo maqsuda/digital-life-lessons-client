@@ -7,28 +7,32 @@ import { IoDiamond } from "react-icons/io5";
 // import useAxiosSecure from "../../hooks/useAxiosSecure";
 // import { useQuery } from "@tanstack/react-query";
 import Loading from "../Loading/Loading";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
   const [open, setOpen] = useState(false);
-  // const [isPremium, setIsPremium] = useState();
+  const [isPremium, setIsPremium] = useState();
   const toggleDropdown = () => setOpen((dropdown) => !dropdown);
+  // const { email } = useParams();
 
   const handleLogout = () => {
     logOut()
       .then(() => {})
       .catch(() => {});
   };
-
-  // const axiosSecure = useAxiosSecure();
-  // const { isLoading, data: userInfo } = useQuery({
-  //   queryKey: ["users", user?.email],
-  //   queryFn: async () => {
-  //     const res = await axiosSecure.get(`/users/${user?.email}`);
-  //     setIsPremium(res.data.isPremium);
-  //     return res.data;
-  //   },
-  // });
+  console.log("Email ", user?.email);
+  const axiosSecure = useAxiosSecure();
+  const { isLoading, data: userInfo } = useQuery({
+    queryKey: ["users", user?.email],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/users/${user?.email}`);
+      // console.log(res.data?.isPremium);
+      setIsPremium(res.data.isPremium);
+      return res.data;
+    },
+  });
 
   // const handlePayment = async () => {
   //   const paymentInfo = {
@@ -47,7 +51,7 @@ const Navbar = () => {
   // if (isLoading) {
   //   return <Loading></Loading>;
   // }
-
+  if (isLoading) return <Loading></Loading>;
   const links = (
     <>
       <li className="hover:bg-primary hover:text-white rounded-md">
@@ -104,25 +108,33 @@ const Navbar = () => {
               {/* Drop Down */}
               <div className="dropdown">
                 <div className="flex gap-2 items-center">
-                  <button>
-                    <Link to={`/dashboard/users/${user.email}`}>
+                  {/* <button>
+                    <Link to={`/users/${user.email}`}>
                       <span className="flex gap-2 justify-center items-center bg-primary text-white font-bold rounded-2xl px-2">
                         <IoDiamond /> Upgrade to Premium
                       </span>
                     </Link>
-                  </button>
+                  </button> */}
 
-                  {/* {isPremium ? (
+                  {isPremium ? (
                     <span className="flex gap-2 justify-center items-center text-primary font-bold rounded-2xl px-2">
                       Premium <FaStar className="text-yellow-300"></FaStar>
                     </span>
                   ) : (
-                    <button onClick={handlePayment}>
+                    <button>
+                      <Link to={`/users/${userInfo.email}`}>
+                        <span className="flex gap-2 justify-center items-center bg-primary text-white font-bold rounded-2xl px-2">
+                          <IoDiamond /> Upgrade to Premium
+                        </span>
+                      </Link>
+                    </button>
+                  )}
+
+                  {/* <button onClick={handlePayment}>
                       <span className="flex gap-2 justify-center items-center bg-primary text-white font-bold rounded-2xl px-2">
                         <IoDiamond /> Upgrade to Premium
                       </span>
-                    </button>
-                  )} */}
+                    </button> */}
 
                   <button onClick={toggleDropdown} className="dropdown-button">
                     <img

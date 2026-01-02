@@ -15,13 +15,14 @@ import DashboardLayout from "../layouts/DashboardLayout/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
 import AddLessons from "../pages/Lessons/AddLessons";
 import MyLessons from "../pages/Lessons/MyLessons";
-import Payment from "../pages/Lessons/Payment";
-import PaymentSuccess from "../pages/Lessons/PaymentSuccess";
-import PaymentCancelled from "../pages/Lessons/PaymentCancelled";
+
+import PaymentSuccess from "../pages/Payment/PaymentSuccess";
+import PaymentCancelled from "../pages/Payment/PaymentCancelled";
 import HomeLessons from "../pages/Lessons/HomeLessons";
 import Lessons from "../pages/Lessons/Lessons";
 import EditLesson from "../pages/Lessons/EditLesson";
 import Profile from "../pages/Lessons/Profile";
+import Payment from "../pages/Payment/Payment";
 
 const router = createBrowserRouter([
   {
@@ -70,10 +71,18 @@ const router = createBrowserRouter([
         path: "register",
         Component: Register,
       },
-      // {
-      //   path: "profile",
-      //   Component: Profile,
-      // },
+      {
+        path: "users/:email",
+        Component: Payment,
+      },
+      {
+        path: "payment-success",
+        Component: PaymentSuccess,
+      },
+      {
+        path: "payment-cancelled",
+        Component: PaymentCancelled,
+      },
     ],
   },
   {
@@ -107,18 +116,6 @@ const router = createBrowserRouter([
       {
         path: "my-lessons",
         Component: MyLessons,
-      },
-      {
-        path: "users/:email",
-        Component: Payment,
-      },
-      {
-        path: "payment-success",
-        Component: PaymentSuccess,
-      },
-      {
-        path: "payment-cancelled",
-        Component: PaymentCancelled,
       },
     ],
   },
