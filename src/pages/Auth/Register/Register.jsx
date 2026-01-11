@@ -47,6 +47,7 @@ const Register = () => {
             email: data.email,
             displayName: data.name,
             photoURL: photoURL,
+            role:'user',
             accessLevel: data.accessLevel,
             price: data.price,
           };

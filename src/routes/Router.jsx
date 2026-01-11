@@ -23,6 +23,8 @@ import Lessons from "../pages/Lessons/Lessons";
 import EditLesson from "../pages/Lessons/EditLesson";
 import Profile from "../pages/Lessons/Profile";
 import Payment from "../pages/Payment/Payment";
+import PaymentHistory from "../pages/Lessons/PaymentHistory";
+import UserManagement from "../pages/Lessons/UserManagement";
 
 const router = createBrowserRouter([
   {
@@ -116,6 +118,14 @@ const router = createBrowserRouter([
       {
         path: "my-lessons",
         Component: MyLessons,
+      },
+      {
+        path: "payments-history",
+        Component: PaymentHistory,
+      },
+      {
+        path: "users-management",
+        Component: UserManagement,
       },
     ],
   },

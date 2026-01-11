@@ -13,12 +13,11 @@ const SocialLogin = () => {
   const handleGoogleSignIn = () => {
     signInGoogle()
       .then((result) => {
-        console.log(result.user);
         const newUser = {
-          name: result.user.displayName,
-          image: result.user.photoURL,
           email: result.user.email,
-          password: "123",
+          displayName: result.user.displayName,
+          photoURL: result.user.photoURL,
+          role: "user",
           accessLevel: "Free",
           price: 0,
         };

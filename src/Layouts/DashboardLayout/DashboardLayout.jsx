@@ -3,6 +3,7 @@ import { Link, NavLink, Outlet } from "react-router";
 import Logo from "../../pages/logo/Logo";
 import { MdOutlinePlayLesson, MdPlayLesson } from "react-icons/md";
 import { ImProfile } from "react-icons/im";
+import { FaHistory, FaUsers } from "react-icons/fa";
 
 const DashboardLayout = () => {
   return (
@@ -100,6 +101,30 @@ const DashboardLayout = () => {
               >
                 <ImProfile />
                 <span className="is-drawer-close:hidden">My Profile</span>
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                to={`/dashboard/payments-history`}
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Payment History"
+              >
+                <FaHistory />
+                <span className="is-drawer-close:hidden">Payments </span>
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                to={`/dashboard/users-management`}
+                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                data-tip="Users Management"
+              >
+                <FaUsers></FaUsers>
+                <span className="is-drawer-close:hidden">
+                  Users Management{" "}
+                </span>
               </NavLink>
             </li>
 

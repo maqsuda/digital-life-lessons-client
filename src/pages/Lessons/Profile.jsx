@@ -37,7 +37,7 @@ const Profile = () => {
   }, [user]);
 
   const handleProfileUpdate = (data) => {
-    const profileImg = data.photo[0];
+    const profileImg = data.photoURL[0];
 
     const formData = new FormData();
     formData.append("image", profileImg);
@@ -119,7 +119,7 @@ const Profile = () => {
 
                 <input
                   type="file"
-                  {...register("photo", { required: true })}
+                  {...register("photoURL", { required: true })}
                   className="file-input"
                   placeholder="Your Photo"
                 />

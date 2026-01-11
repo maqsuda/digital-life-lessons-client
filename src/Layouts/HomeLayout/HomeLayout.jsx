@@ -5,9 +5,9 @@ import Footer from "../../pages/Footer/Footer";
 
 const HomeLayout = () => {
   return (
-    <div className=" ">
+    <div className="w-11/12 mx-auto">
       <Navbar></Navbar>
-      <Outlet className="w-11/12 mx-auto"></Outlet>
+      <Outlet></Outlet>
       <Footer></Footer>
     </div>
   );
