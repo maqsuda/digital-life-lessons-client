@@ -1,21 +1,58 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { FaUserMinus, FaUserPlus } from "react-icons/fa6";
+import Swal from "sweetalert2";
 
 const UserManagement = () => {
   const axiosSecure = useAxiosSecure();
 
-  const { data: users = [] } = useQuery({
+  const { refetch, data: userInfo = [] } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/users`);
       return res.data;
     },
   });
+
+  const handleMakeAdmin = (user) => {
+    const roleAdmin = { role: "admin" };
+    //conformation message
+    axiosSecure.patch(`/users/${user}/role`, roleAdmin).then((res) => {
+      refetch();
+      if (res.data.modifiedCount) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${userInfo.displayName} marked as a Admin`,
+          showConfirmButton: false,
+          timer: 2500,
+        });
+      }
+    });
+  };
+
+  const handleRemoveAdmin = (user) => {
+    const roleAdmin = { role: "user" };
+    //conformation message
+    axiosSecure.patch(`/users/${user}/role`, roleAdmin).then((res) => {
+      refetch();
+      if (res.data.modifiedCount) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: `${res.data.displayName} marked as a User`,
+          showConfirmButton: false,
+          timer: 2500,
+        });
+      }
+    });
+  };
+
   return (
     <div>
       <h2 className="text-2xl font-bold text-center underline pt-5">
-        Users Management {users.length}
+        Users Management
       </h2>
 
       <div className="overflow-x-auto">
@@ -32,11 +69,9 @@ const UserManagement = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user, index) => (
+            {userInfo.map((user, index) => (
               <tr>
-                <th>
-                  <td>{index + 1}</td>
-                </th>
+                <th>{index + 1}</th>
                 <td>
                   <div className="flex items-center gap-3">
                     <div className="avatar">
@@ -55,9 +90,24 @@ const UserManagement = () => {
                 </td>
                 <td>{user.email}</td>
                 <td>{user.role}</td>
-                <th>
-                  <button className="btn btn-ghost btn-xs">details</button>
-                </th>
+                <td>
+                  {user.role === "admin" ? (
+                    <button
+                      onClick={() => handleRemoveAdmin(user._id)}
+                      className="btn btn-sm bg-red-400"
+                    >
+                      <FaUserMinus></FaUserMinus>
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() => handleMakeAdmin(user._id)}
+                      className="btn btn-sm bg-green-600"
+                    >
+                      <FaUserPlus></FaUserPlus>
+                    </button>
+                  )}
+                </td>
+                <td>Action</td>
               </tr>
             ))}
           </tbody>

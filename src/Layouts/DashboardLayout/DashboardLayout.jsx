@@ -4,8 +4,12 @@ import Logo from "../../pages/logo/Logo";
 import { MdOutlinePlayLesson, MdPlayLesson } from "react-icons/md";
 import { ImProfile } from "react-icons/im";
 import { FaHistory, FaUsers } from "react-icons/fa";
+import useRole from "../../hooks/useRole";
 
 const DashboardLayout = () => {
+  const { role } = useRole();
+  console.log(role);
+
   return (
     <div className="drawer lg:drawer-open">
       <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
@@ -115,18 +119,20 @@ const DashboardLayout = () => {
               </NavLink>
             </li>
 
-            <li>
-              <NavLink
-                to={`/dashboard/users-management`}
-                className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                data-tip="Users Management"
-              >
-                <FaUsers></FaUsers>
-                <span className="is-drawer-close:hidden">
-                  Users Management{" "}
-                </span>
-              </NavLink>
-            </li>
+            {role == "admin" && (
+              <li>
+                <NavLink
+                  to={`/dashboard/users-management`}
+                  className="is-drawer-close:tooltip is-drawer-close:tooltip-right"
+                  data-tip="Users Management"
+                >
+                  <FaUsers></FaUsers>
+                  <span className="is-drawer-close:hidden">
+                    Users Management{" "}
+                  </span>
+                </NavLink>
+              </li>
+            )}
 
             {/* List item */}
           </ul>

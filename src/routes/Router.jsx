@@ -25,6 +25,7 @@ import Profile from "../pages/Lessons/Profile";
 import Payment from "../pages/Payment/Payment";
 import PaymentHistory from "../pages/Lessons/PaymentHistory";
 import UserManagement from "../pages/Lessons/UserManagement";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
   {
@@ -125,7 +126,11 @@ const router = createBrowserRouter([
       },
       {
         path: "users-management",
-        Component: UserManagement,
+        element: (
+          <AdminRoute>
+            <UserManagement></UserManagement>
+          </AdminRoute>
+        ),
       },
     ],
   },
